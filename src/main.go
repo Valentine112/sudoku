@@ -2,6 +2,9 @@ package main
 
 import "fmt"
 
+// A test sample
+// It is a 9-dimesional sudoku problem
+// Zero means empty, so spaces with 0 are blank and needs to be filled with the right number
 var  testSudoku = [][][][]int{
 	{
 		{{6, 3, 0}, {0, 2, 0}, {0, 0, 0}},
