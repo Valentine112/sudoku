@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"github.com/Valentine112/sudoku/pkg"
+)
 
 // A test sample
 // It is a 9-dimesional sudoku problem
@@ -23,5 +26,6 @@ var  testSudoku = [][][][]int{
 // Entry point
 func main() {
 	// Every other func would be called from within this
-	fmt.Println(testSudoku)
+	res := pkg.Process(testSudoku)
+	fmt.Println(res)
 }
