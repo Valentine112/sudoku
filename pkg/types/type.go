@@ -7,3 +7,13 @@ type Position struct {
 	Layer2 int
 	Layer3 int
 }
+
+// Row
+type Row struct {
+	Element int
+	RowValues []int
+}
+
+type MissingProperties struct {
+	position int
+}

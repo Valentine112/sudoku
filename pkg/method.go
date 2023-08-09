@@ -3,7 +3,38 @@ package pkg
 import (
 	"github.com/Valentine112/sudoku/pkg/types"
 	"reflect"
+	"fmt"
 )
+
+/**
+* Layering starts from the top core
+* That means layer is the top core
+* Layer1 is the core after the top core and so on
+*/
+
+func rowColumnBox(vPosi []types.Position, data [][][][]int) {
+	var rowType types.Row
+	var rowValues []types.Row
+	//var columnValues []int
+
+	missingLen := reflect.ValueOf(vPosi).Len()
+	// Loop through each unknown value to get their contracdictory row, col & box value
+	for i := 0; i < missingLen; i++ {
+		// Get the possible row values
+		elem := vPosi[i]
+		row := data[elem.Layer][elem.Layer1]
+
+		for _, r := range row {
+			rowType.Element = i + 1
+			rowType.RowValues = append(rowType.RowValues, r[0], r[1], r[2])
+
+			rowValues = append(rowValues, rowType)
+		}
+	}
+	
+	fmt.Println(rowValues)
+
+}
 
 // This funct returns the missing elements along with their position on each axis
 func getMissingPosition(sudoku [][][][]int) []types.Position {
@@ -47,7 +78,25 @@ func getMissingPosition(sudoku [][][][]int) []types.Position {
 	return result
 }
 
+func findPossibleValues(unknownValues []types.Position, data [][][][]int) {
+	// Fetch all the possible values to for each empty container
+	/*for _, val := range unknownValues {
+		/*layer3 := val.Layer3
+		layer2 := val.Layer2
+		layer1 := val.Layer1
+		layer := val.Layer
+
+		// Get the mising value, then fetch the values in it row, column and box
+		var missingValue int = data[layer][layer1][layer2][layer3]*/
+
+	//}
+
+	rowColumnBox(unknownValues, data)
+}
+
 //Process, this func would call every other func in the pkg space
-func Process(data [][][][]int) []types.Position {
-	return getMissingPosition(data)
+func Process(data [][][][]int) {
+	missingPositions := getMissingPosition(data)
+
+	findPossibleValues(missingPositions, data)
 }
