@@ -14,6 +14,8 @@ type Row struct {
 	RowValues []int
 }
 
-type MissingProperties struct {
-	position int
+type MissingProps struct {
+	Position Position
+	Possible []int
+	Box int
 }
